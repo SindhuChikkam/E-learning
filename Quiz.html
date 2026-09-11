@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Programming Language Quiz</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f2f2f2;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      background: white;
+      max-width: 1200px;
+      margin: 40px auto;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    .btn {
+      display: block;
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      background-color: #4caf50;
+      color: white;
+      border: none;
+      border-radius: 10px;
+      font-size: 16px;
+      cursor: pointer;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .question {
+      margin: 20px 0;
+    }
+
+    .option {
+      display: block;
+      margin: 10px 0;
+      text-align: left;
+    }
+
+    .result {
+      font-size: 24px;
+      font-weight: bold;
+      text-align: left;
+    }
+
+    .fixed-buttons {
+      display: flex;
+      justify-content: space-between;
+      max-width: 1500px;
+      margin: 40px auto 0;
+      padding-top: 140px;
+      border-top: 1px solid #ccc;
+    }
+
+    .nav-btn {
+      background-color: #4caf50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border-radius: 10px;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+
+    .quiz-title {
+      text-align: left;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 20px;
+    }
+
+    .result h2 {
+      margin-bottom: 10px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container" id="main">
+    <h1>Programming Language Quiz</h1>
+    <h2>Select a language:</h2>
+    <button class="btn" onclick="startQuiz('C')">C</button>
+    <button class="btn" onclick="startQuiz('C++')">C++</button>
+    <button class="btn" onclick="startQuiz('Java')">Java</button>
+    <button class="btn" onclick="startQuiz('HTML')">HTML</button>
+    <button class="btn" onclick="startQuiz('CSS')">CSS</button>
+    <button class="btn" onclick="startQuiz('JavaScript')">JavaScript</button>
+  </div>
+
+  <div class="container" id="quiz" style="display:none;"></div>
+  <div class="container" id="result" style="display:none;"></div>
+
+  <div class="fixed-buttons">
+    <button class="nav-btn" onclick="window.location.href='courses.html'">Previous Page</button>
+    <button class="nav-btn" onclick="window.location.href='feedback.html'">Next Page</button>
+  </div>
+
+  <script>
+    const questionsData = {
+      // same questionsData as before...
+      'C': [
+        { q: "Who developed C?", a: "Dennis Ritchie", options: ["Dennis Ritchie", "Bjarne Stroustrup", "James Gosling", "Guido van Rossum"] },
+        { q: "Which header file is used for input/output in C?", a: "stdio.h", options: ["iostream", "stdio.h", "conio.h", "input.h"] },
+        { q: "Which data type is used in C?", a: "int", options: ["number", "digit", "int", "integer"] },
+        { q: "Which symbol ends a statement?", a: ";", options: [":", ".", ";", "/"] },
+        { q: "Which loop is not in C?", a: "foreach", options: ["for", "while", "do-while", "foreach"] },
+        { q: "Keyword to return a value?", a: "return", options: ["exit", "end", "return", "break"] },
+        { q: "C is what level language?", a: "Middle", options: ["High", "Low", "Middle", "Basic"] },
+        { q: "File extension of C?", a: ".c", options: [".cpp", ".java", ".c", ".cs"] },
+        { q: "Tool to compile C?", a: "Compiler", options: ["Interpreter", "Parser", "Compiler", "Builder"] },
+        { q: "Main function signature?", a: "int main()", options: ["main()", "int main()", "void main()", "function main()"] }
+      ],
+      'C++': [
+        { q: "Who developed C++?", a: "Bjarne Stroustrup", options: ["Dennis Ritchie", "Bjarne Stroustrup", "James Gosling", "Brendan Eich"] },
+        { q: "Which concept is in C++?", a: "Object-Oriented", options: ["Functional", "Object-Oriented", "Assembly", "Scripting"] },
+        { q: "C++ is a ___ language?", a: "Middle-level", options: ["Low-level", "High-level", "Middle-level", "Basic-level"] },
+        { q: "What is the extension of C++ file?", a: ".cpp", options: [".c", ".java", ".cpp", ".cc"] },
+        { q: "Which operator is used for input?", a: ">>", options: ["<<", ">>", "::", "**"] },
+        { q: "Which keyword creates object?", a: "new", options: ["this", "new", "malloc", "object"] },
+        { q: "Function overloading is?", a: "Polymorphism", options: ["Inheritance", "Polymorphism", "Abstraction", "Encapsulation"] },
+        { q: "Which of these is not access specifier?", a: "friendly", options: ["private", "public", "protected", "friendly"] },
+        { q: "Which is used for inheritance?", a: ":", options: ["->", "::", ":", ".."] },
+        { q: "What is 'this' keyword?", a: "Pointer to current object", options: ["Scope identifier", "Destructor", "Pointer to base", "Pointer to current object"] }
+      ],
+      'Java': [
+        { q: "Java was developed by?", a: "James Gosling", options: ["Dennis Ritchie", "James Gosling", "Bjarne Stroustrup", "Brendan Eich"] },
+        { q: "Java is platform ___?", a: "Independent", options: ["Dependent", "Independent", "Specific", "Exclusive"] },
+        { q: "Extension of Java file?", a: ".java", options: [".class", ".jav", ".java", ".js"] },
+        { q: "Java runs on?", a: "JVM", options: ["OS", "Java", "JVM", "Compiler"] },
+        { q: "Which is not keyword?", a: "main", options: ["this", "main", "final", "extends"] },
+        { q: "Which access modifier is most restrictive?", a: "private", options: ["private", "protected", "public", "default"] },
+        { q: "Java supports multiple inheritance?", a: "Through interfaces", options: ["Yes", "No", "Only abstract", "Through interfaces"] },
+        { q: "Which package is default?", a: "java.lang", options: ["java.util", "java.io", "java.lang", "java.main"] },
+        { q: "Which is correct?", a: "public static void main", options: ["static public void main", "void public static main", "public static void main", "main public static void"] },
+        { q: "JVM stands for?", a: "Java Virtual Machine", options: ["Java Virtual Module", "Java Visual Machine", "Java Virtual Machine", "Java Verified Method"] }
+      ],
+      'HTML': [
+        { q: "HTML stands for?", a: "HyperText Markup Language", options: ["HyperText Markdown Language", "HyperText Markup Language", "HyperTool Multi Language", "HyperTool Markup Language"] },
+        { q: "HTML is used for?", a: "Web page structure", options: ["Styling", "Logic", "Database", "Web page structure"] },
+        { q: "Which tag is for paragraph?", a: "<p>", options: ["<div>", "<p>", "<span>", "<para>"] },
+        { q: "Correct HTML for link?", a: "<a href='url'>", options: ["<link>url</link>", "<a url=''>", "<a href='url'>", "<href>url</href>"] },
+        { q: "HTML tag for line break?", a: "<br>", options: ["<break>", "<br>", "<lb>", "<line>"] },
+        { q: "Which is semantic tag?", a: "<article>", options: ["<div>", "<span>", "<article>", "<b>"] },
+        { q: "HTML5 introduced?", a: "<video>", options: ["<media>", "<movie>", "<vid>", "<video>"] },
+        { q: "Which tag contains metadata?", a: "<head>", options: ["<body>", "<meta>", "<head>", "<footer>"] },
+        { q: "Tag to display image?", a: "<img>", options: ["<image>", "<img>", "<pic>", "<src>"] },
+        { q: "Which attribute is used for image path?", a: "src", options: ["href", "src", "link", "path"] }
+      ],
+      'CSS': [
+        { q: "CSS stands for?", a: "Cascading Style Sheets", options: ["Color Style Sheets", "Creative Style Sheets", "Cascading Style Sheets", "Coded Style Sheets"] },
+        { q: "Which is correct CSS syntax?", a: "body {color: black;}", options: ["{body;color:black;}", "body:color=black;", "body {color: black;}", "body = color black;"] },
+        { q: "Which CSS property for background color?", a: "background-color", options: ["bgcolor", "color", "background-color", "background"] },
+        { q: "Which selector targets ID?", a: "#", options: [".", "#", "*", "%"] },
+        { q: "Which symbol is for class?", a: ".", options: ["#", ".", "*", "&"] },
+        { q: "CSS is used for?", a: "Styling", options: ["Database", "Logic", "Styling", "Structure"] },
+        { q: "How to make text bold?", a: "font-weight: bold;", options: ["text-weight:bold;", "font:bold;", "font-weight: bold;", "bold: true;"] },
+        { q: "Which is not CSS unit?", a: "pxs", options: ["em", "px", "%", "pxs"] },
+        { q: "Which property sets spacing between lines?", a: "line-height", options: ["spacing", "line-spacing", "line-height", "text-space"] },
+        { q: "How to include external CSS?", a: "<link>", options: ["<script>","<css>","<style>","<link>"] }
+      ],
+      'JavaScript': [
+        { q: "Which type of JavaScript language is JavaScript?", a: "Object-Based", options: ["Object-Oriented", "Object-Based", "Assembly-language", "High-level"] },
+        { q: "Which method prints to console?", a: "console.log()", options: ["console.print()", "console.output()", "console.log()", "log.console()"] },
+        { q: "How to declare variable?", a: "let", options: ["def", "int", "let", "declare"] },
+        { q: "JavaScript file extension?", a: ".js", options: [".js", ".java", ".script", ".jv"] },
+        { q: "Which is not a JavaScript type?", a: "float", options: ["number", "boolean", "string", "float"] },
+        { q: "Function in JavaScript starts with?", a: "function", options: ["func", "function", "method", "void"] },
+        { q: "Which symbol is for comments?", a: "//", options: ["#","**","//","/**/"] },
+        { q: "To parse integer use?", a: "parseInt()", options: ["int()", "parse()", "parseInt()", "convert()"] },
+        { q: "Event to detect click?", a: "onclick", options: ["click", "onmouse", "onclick", "hover"] },
+        { q: "Which keyword is for constant?", a: "const", options: ["constant", "let", "const", "final"] }
+      ]
+    // same as previous for other languages...
+    };
+
+    let currentQuiz = '';
+    let score = 0;
+
+    function startQuiz(language) {
+      currentQuiz = language;
+      score = 0;
+      const quizContainer = document.getElementById('quiz');
+      const questions = questionsData[language];
+      let html = `
+        <div class="quiz-title">
+          <h1>Programming Language Quiz</h1><br><br>
+          Quiz on ${language}
+        </div>
+        <form id="<h2>quizForm</h2>" >`;
+
+      questions.forEach((item, index) => {
+        html += `<div class="question">
+                  <p><strong>Question ${index + 1}:</strong> ${item.q}</p>`;
+        item.options.forEach(option => {
+          html += `<label class="option"><input type="radio" name="q${index}" value="${option}"> ${option}</label>`;
+        });
+        html += `</div>`;
+      });
+
+      html += `<button type="submit" class="btn">Submit Quiz</button></form>`;
+      quizContainer.innerHTML = html;
+      document.getElementById('main').style.display = 'none';
+      quizContainer.style.display = 'block';
+      document.getElementById('result').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+
+      document.getElementById('quizForm').onsubmit = function(e) {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        const answers = questionsData[currentQuiz];
+        score = 0;
+        answers.forEach((q, i) => {
+          if (formData.get("q" + i) === q.a) score++;
+        });
+
+        let message = `
+          <div style="text-align: center;">
+            You got ${score} out of 10 correct.<br>
+            ${score === 10 ? "You passed the quiz." : "Sorry! You didn't pass the quiz."}
+          </div>`;
+
+        document.getElementById('quiz').style.display = 'none';
+        document.getElementById('result').innerHTML = `
+          <div class="quiz-title"><h2>Programming Language Quiz</h2></div>
+          <div class="result">${message}</div>`;
+        document.getElementById('result').style.display = 'block';
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      };
+    }
+  </script>
+
+</body>
+</html>

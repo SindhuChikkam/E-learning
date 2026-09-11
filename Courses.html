@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Courses - E-Learning</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+    }
+
+    /* Courses Section */
+    .courses-container {
+      padding: 40px;
+      padding-top: 60px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .course-card {
+      text-align: center;
+      transition: transform 0.3s;
+    }
+
+    .course-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .course-image {
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+      border-radius: 12px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.3s;
+      cursor: pointer;
+    }
+
+    .course-image:hover {
+      transform: scale(1.05);
+    }
+
+    .course-title {
+      margin-top: 12px;
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .course-title a {
+      text-decoration: none;
+      color: #333;
+      transition: color 0.3s;
+    }
+
+    .course-title a:hover {
+      color: #00aced;
+    }
+
+    /* Navigation Buttons */
+    .bottom-nav {
+      position: fixed;
+      bottom: 20px;
+      left: 0;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+
+    .bottom-nav a {
+      background-color: #007BFF;
+      color: white;
+      font-size: 15px;
+      padding: 8px 18px;
+      border-radius: 12px;
+      text-decoration: underline;
+      transition: background-color 0.3s, color 0.3s;
+      user-select: none;
+    }
+
+    .bottom-nav a:hover {
+      background-color: #0056b3;
+      color: #e0e0e0;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 900px) {
+      .courses-container {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+
+    @media (max-width: 600px) {
+      .courses-container {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Courses Section -->
+  <div class="courses-container">
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=IOSS-mCso6E">
+        <img src="C Programming.png" alt="C Programming" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/c/">Learn C Programming</a></div>
+    </div>
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=vLnPwxZdW4Y">
+        <img src="C++.webp" alt="C++ Programming" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/cpp/">Master C++ Programming</a></div>
+    </div>
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=xTtL8E4LzTQ">
+        <img src="Java.jpg" alt="Java Programming" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/java/">Java Programming Basics</a></div>
+    </div>
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=HcOc7P5BMi4">
+        <img src="Html.webp" alt="HTML" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/html">HTML</a></div>
+    </div>
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=1Rs2ND1ryYc">
+        <img src="CSS.jpg" alt="CSS" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/css/">CSS</a></div>
+    </div>
+    <div class="course-card">
+      <a href="https://www.youtube.com/watch?v=upDLs1sn7g4">
+        <img src="JavaScript.jpg" alt="JavaScript" class="course-image">
+      </a>
+      <div class="course-title"><a href="https://www.w3schools.com/js">JavaScript</a></div>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Buttons -->
+  <div class="bottom-nav">
+    <a href="test.html">Previous Page</a>
+    <a href="Quiz.html">Next Page</a>
+  </div>
+
+</body>
+</html>

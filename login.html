@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Login - E-Learning</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to right, #1e3c72, #2a5298);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white;
+    }
+
+    .login-container {
+      background-color: rgba(255, 255, 255, 0.1);
+      padding: 40px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.2);
+      text-align: center;
+      width: 100%;
+      max-width: 400px;
+    }
+
+    .login-container h2 {
+      margin-bottom: 30px;
+      font-size: 28px;
+    }
+
+    .login-container input {
+      width: 90%;
+      padding: 12px;
+      margin: 10px 0;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+    }
+
+    .login-container button {
+      width: 95%;
+      padding: 12px;
+      margin-top: 15px;
+      border: none;
+      border-radius: 8px;
+      background-color: #00aced;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+    }
+
+    .login-container button:hover {
+      background-color: #0084a5;
+    }
+
+    .signup-btn {
+      background-color: transparent;
+      border: 2px solid #00aced;
+      color: #00aced;
+      margin-top: 10px;
+    }
+
+    .signup-btn:hover {
+      background-color: #00aced;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="login-container">
+    <h2>Login to E-Learning</h2>
+    <form onsubmit="handleLogin(event)">
+      <input type="email" id="email" placeholder="Email" required />
+      <input type="password" id="password" placeholder="Password" required />
+      <button type="submit">Login</button>
+    </form>
+    <a href="signup.html">
+      <button class="signup-btn">Sign Up</button>
+    </a>
+  </div>
+
+  <script>
+    function handleLogin(event) {
+      event.preventDefault(); // Prevent form submission
+
+      // Optional: validate email/password here or send to server
+
+      // Redirect to Courses page
+      window.location.href = "Courses.html";
+    }
+  </script>
+
+</body>
+</html>  
